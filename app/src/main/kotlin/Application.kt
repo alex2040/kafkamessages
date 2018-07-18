@@ -1,4 +1,3 @@
-
 import kafka.Consumer
 import kafka.Producer
 import javax.ws.rs.client.ClientBuilder
