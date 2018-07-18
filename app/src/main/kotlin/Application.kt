@@ -1,9 +1,8 @@
+
 import kafka.Consumer
 import kafka.Producer
 import javax.ws.rs.client.ClientBuilder
-import javax.ws.rs.core.MediaType
 
-private val client = ClientBuilder.newClient()
 private val producer = Producer()
 
 fun main(args: Array<String>) {
@@ -18,11 +17,12 @@ fun main(args: Array<String>) {
 }
 
 private fun sendTelegramMessage(msg: String) {
+    val client = ClientBuilder.newClient()
     val response = client.target("https://api.telegram.org")
             .path("bot${Configuration.getBotToken()}/sendMessage")
             .queryParam("chat_id", Configuration.getChatId())
             .queryParam("text", msg)
-            .request(MediaType.TEXT_PLAIN_TYPE).get()
+            .request().get()
 
     if (response.status != 200) {
         putMessageToKafka(msg)

@@ -9,5 +9,15 @@ class Configuration private constructor() {
         fun getChatId():String {
             return "-1001395933380"
         }
+
+        @JvmStatic
+        fun getProxyHost():String {
+            return "194.67.201.106"
+        }
+
+        @JvmStatic
+        fun getProxyPort():Int {
+            return 3128
+        }
     }
 }

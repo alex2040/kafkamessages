@@ -2,14 +2,18 @@ package telegram
 
 import Configuration
 import kafka.Producer
+import org.apache.http.HttpHost
+import org.apache.http.client.config.RequestConfig
+import org.telegram.telegrambots.ApiContext
 import org.telegram.telegrambots.ApiContextInitializer
 import org.telegram.telegrambots.TelegramBotsApi
 import org.telegram.telegrambots.api.objects.Update
+import org.telegram.telegrambots.bots.DefaultBotOptions
 import org.telegram.telegrambots.bots.TelegramLongPollingBot
 import org.telegram.telegrambots.exceptions.TelegramApiException
 
 
-class KafkaMessagesBot : TelegramLongPollingBot() {
+class KafkaMessagesBot(options: DefaultBotOptions) : TelegramLongPollingBot(options) {
 
     private val producer = Producer()
 
@@ -30,22 +34,19 @@ class KafkaMessagesBot : TelegramLongPollingBot() {
 fun main(args: Array<String>) {
     ApiContextInitializer.init()
     val telegramBotsApi = TelegramBotsApi()
-//    val botOptions = ApiContext.getInstance(DefaultBotOptions::class.java)
-//
-//    val credsProvider = BasicCredentialsProvider()
-//    credsProvider.setCredentials(
-//            AuthScope("195.181.209.252", 1080),
-//            UsernamePasswordCredentials("alex", "p5okc6"))
-//
-//    val httpHost = HttpHost("195.181.209.252", 1080)
-//
-//    val requestConfig = RequestConfig.custom().setProxy(httpHost).setAuthenticationEnabled(true).build()
-//    botOptions.requestConfig = requestConfig
-//    botOptions.credentialsProvider = credsProvider
-//    botOptions.httpProxy = httpHost
+    val botOptions = getBotOptions()
     try {
-        telegramBotsApi.registerBot(KafkaMessagesBot())
+        telegramBotsApi.registerBot(KafkaMessagesBot(botOptions))
     } catch (e: TelegramApiException) {
         e.printStackTrace()
     }
+}
+
+private fun getBotOptions(): DefaultBotOptions {
+    val botOptions = ApiContext.getInstance(DefaultBotOptions::class.java)
+    val httpHost = HttpHost(Configuration.getProxyHost(), Configuration.getProxyPort())
+    val requestConfig = RequestConfig.custom().setProxy(httpHost).setAuthenticationEnabled(false).build()
+    botOptions.requestConfig = requestConfig
+    botOptions.httpProxy = httpHost
+    return botOptions
 }
