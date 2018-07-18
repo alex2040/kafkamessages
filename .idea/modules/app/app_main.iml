@@ -38,13 +38,13 @@
     <orderEntry type="module" module-name="common_main" />
     <orderEntry type="library" name="Gradle: org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.2.51" level="project" />
     <orderEntry type="library" name="Gradle: org.glassfish.jersey.core:jersey-server:2.27" level="project" />
-    <orderEntry type="library" name="Gradle: org.glassfish.jersey.core:jersey-client:2.27" level="project" />
     <orderEntry type="library" name="Gradle: org.glassfish.jersey.inject:jersey-hk2:2.27" level="project" />
     <orderEntry type="library" name="Gradle: com.google.protobuf:protobuf-java:3.6.0" level="project" />
     <orderEntry type="library" name="Gradle: org.apache.kafka:kafka_2.12:1.1.0" level="project" />
     <orderEntry type="library" name="Gradle: org.apache.kafka:kafka-clients:1.1.0" level="project" />
     <orderEntry type="library" name="Gradle: org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.2.51" level="project" />
     <orderEntry type="library" name="Gradle: org.jetbrains.kotlin:kotlin-stdlib:1.2.51" level="project" />
+    <orderEntry type="library" name="Gradle: org.glassfish.jersey.core:jersey-client:2.27" level="project" />
     <orderEntry type="library" name="Gradle: org.glassfish.jersey.media:jersey-media-jaxb:2.27" level="project" />
     <orderEntry type="library" name="Gradle: org.glassfish.jersey.core:jersey-common:2.27" level="project" />
     <orderEntry type="library" name="Gradle: javax.ws.rs:javax.ws.rs-api:2.1" level="project" />

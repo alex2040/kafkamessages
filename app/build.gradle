@@ -25,9 +25,7 @@ dependencies {
     compile project(':common')
     compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
     compile 'org.glassfish.jersey.core:jersey-server:2.27'
-    compile 'org.glassfish.jersey.core:jersey-client:2.27'
     compile 'org.glassfish.jersey.inject:jersey-hk2:2.27'
-    compile 'org.glassfish.jersey:jersey-bom:2.27'
 }
 
 compileKotlin {
