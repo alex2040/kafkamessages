@@ -24,8 +24,7 @@ dependencies {
     compile project(':kafka')
     compile project(':common')
     compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
-    compile 'org.glassfish.jersey.core:jersey-server:2.27'
-    compile 'org.glassfish.jersey.inject:jersey-hk2:2.27'
+    compile 'org.glassfish.jersey.core:jersey-client:2.25.1'
 }
 
 compileKotlin {
