@@ -1,0 +1,33 @@
+buildscript {
+    ext.kotlin_version = '1.2.51'
+
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+    }
+}
+
+group 'kafkamessages'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+apply plugin: 'kotlin'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile project(':common')
+    compile project(':kafka')
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
+    compile 'org.telegram:telegrambots:3.6.1'
+}
+
+compileKotlin {
+    kotlinOptions.jvmTarget = "1.8"
+}

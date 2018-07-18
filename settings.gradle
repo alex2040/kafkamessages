@@ -1,2 +1,6 @@
 rootProject.name = 'kafkamessages'
+include 'app'
+include 'kafka'
+include 'telegram'
+include 'common'
 

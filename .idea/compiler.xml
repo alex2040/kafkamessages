@@ -2,10 +2,18 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <bytecodeTargetLevel>
+      <module name="app_main" target="1.8" />
+      <module name="app_test" target="1.8" />
+      <module name="common_main" target="1.8" />
+      <module name="common_test" target="1.8" />
+      <module name="kafka_main" target="1.8" />
+      <module name="kafka_test" target="1.8" />
       <module name="kafkamessages_main" target="1.8" />
       <module name="kafkamessages_test" target="1.8" />
       <module name="kafkatest_main" target="1.8" />
       <module name="kafkatest_test" target="1.8" />
+      <module name="telegram_main" target="1.8" />
+      <module name="telegram_test" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

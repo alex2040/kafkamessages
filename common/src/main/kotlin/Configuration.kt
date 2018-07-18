@@ -1,5 +1,3 @@
-
-
 class Configuration private constructor() {
     companion object {
         @JvmStatic

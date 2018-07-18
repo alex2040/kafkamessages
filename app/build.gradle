@@ -1,0 +1,35 @@
+buildscript {
+    ext.kotlin_version = '1.2.51'
+
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+    }
+}
+
+group 'kafkamessages'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'kotlin'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile project(':kafka')
+    compile project(':common')
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
+    compile 'org.glassfish.jersey.core:jersey-server:2.27'
+    compile 'org.glassfish.jersey.core:jersey-client:2.27'
+    compile 'org.glassfish.jersey.inject:jersey-hk2:2.27'
+    compile 'org.glassfish.jersey:jersey-bom:2.27'
+}
+
+compileKotlin {
+    kotlinOptions.jvmTarget = "1.8"
+}

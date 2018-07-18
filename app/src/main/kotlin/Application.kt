@@ -11,8 +11,8 @@ fun main(args: Array<String>) {
     while (true) {
         val records = consumer.receiveMessages()
         for (record in records) {
-            sendTelegramMessage(record.value().body)
             System.out.println("message : ${record.value().body}")
+            sendTelegramMessage(record.value().body)
         }
     }
 }
