@@ -27,6 +27,9 @@
   <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_8">
     <output url="file://$MODULE_DIR$/../../../kafka/out/production/classes" />
     <exclude-output />
+    <content url="file://$MODULE_DIR$/../../../kafka/build/generated/source/proto/main/java">
+      <sourceFolder url="file://$MODULE_DIR$/../../../kafka/build/generated/source/proto/main/java" isTestSource="false" />
+    </content>
     <content url="file://$MODULE_DIR$/../../../kafka/src/main">
       <sourceFolder url="file://$MODULE_DIR$/../../../kafka/src/main/java" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/../../../kafka/src/main/kotlin" isTestSource="false" />
