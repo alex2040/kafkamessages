@@ -11,7 +11,9 @@ class Producer {
     private val producer: KafkaProducer<Int, Message>
 
     init {
-        producer = KafkaProducer(getProperties())
+        val properties = getProperties()
+        println("create producer using kafka server: ${properties["bootstrap.servers"]}")
+        producer = KafkaProducer(properties)
     }
 
     fun sendMessage(msg: String) {
@@ -38,7 +40,6 @@ class Producer {
         if (kafkaServer != null) {
             properties["bootstrap.servers"] = kafkaServer
         }
-        println("produce using kafka server: ${properties["bootstrap.servers"]}")
         return properties
     }
 }

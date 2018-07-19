@@ -10,7 +10,9 @@ class Consumer {
     private val consumer: KafkaConsumer<Int, Message>
 
     init {
-        consumer = KafkaConsumer(getProperties())
+        val properties = getProperties()
+        println("create consumer using kafka server: ${properties["bootstrap.servers"]}")
+        consumer = KafkaConsumer(properties)
         consumer.subscribe(Collections.singletonList("test"))
     }
 
@@ -26,7 +28,6 @@ class Consumer {
         if (kafkaServer != null) {
             properties["bootstrap.servers"] = kafkaServer
         }
-        println("consume using kafka server: ${properties["bootstrap.servers"]}")
         return properties
     }
 }
