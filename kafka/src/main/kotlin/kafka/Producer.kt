@@ -18,6 +18,7 @@ class Producer {
         val message = Message.newBuilder().setBody(msg).build()
         try {
             producer.send(ProducerRecord("test", message))
+            println("sent message to kafka: $message")
         } catch (e: InterruptedException) {
             e.printStackTrace()
         } catch (e: ExecutionException) {
@@ -37,7 +38,7 @@ class Producer {
         if (kafkaServer != null) {
             properties["bootstrap.servers"] = kafkaServer
         }
-        println("consume using kafka server: ${properties["bootstrap.servers"]}")
+        println("produce using kafka server: ${properties["bootstrap.servers"]}")
         return properties
     }
 }

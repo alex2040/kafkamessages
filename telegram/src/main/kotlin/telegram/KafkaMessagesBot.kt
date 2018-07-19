@@ -23,6 +23,7 @@ class KafkaMessagesBot(options: DefaultBotOptions) : TelegramLongPollingBot(opti
 
     override fun onUpdateReceived(e: Update) {
         val message = e.message
+        println("send message to kafka: $message")
         producer.sendMessage(message.text)
     }
 
