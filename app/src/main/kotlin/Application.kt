@@ -1,6 +1,8 @@
 import kafka.Consumer
 import kafka.Producer
-import javax.ws.rs.client.ClientBuilder
+import okhttp3.OkHttpClient
+import okhttp3.Request
+
 
 private val producer = Producer()
 
@@ -15,16 +17,20 @@ fun main(args: Array<String>) {
     }
 }
 
-private fun sendTelegramMessage(msg: String) {
-    val client = ClientBuilder.newClient()
-    val response = client.target("https://api.telegram.org")
-            .path("bot${Configuration.getBotToken()}/sendMessage")
-            .queryParam("chat_id", Configuration.getChatId())
-            .queryParam("text", msg)
-            .request().get()
+private fun sendTelegramMessage(message: String) {
+    val client = OkHttpClient()
 
-    if (response.status != 200) {
-        putMessageToKafka(msg)
+    val request = Request.Builder()
+            .url("https://api.telegram.org/bot${Configuration.getBotToken()}/sendMessage?chat_id=${Configuration.getChatId()}&text=$message")
+            .get()
+            .build()
+    try {
+        val response = client.newCall(request).execute()
+        if (response.code() != 200) {
+            putMessageToKafka(message)
+        }
+    } catch (e: Exception) {
+        putMessageToKafka(message)
     }
 }
 
