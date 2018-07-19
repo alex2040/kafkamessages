@@ -26,6 +26,7 @@ class Consumer {
         if (kafkaServer != null) {
             properties["bootstrap.servers"] = kafkaServer
         }
+        println("consume using kafka server: ${properties["bootstrap.servers"]}")
         return properties
     }
 }
