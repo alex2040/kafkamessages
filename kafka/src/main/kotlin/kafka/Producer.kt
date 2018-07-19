@@ -33,6 +33,10 @@ class Producer {
         val inputStream = javaClass.classLoader.getResourceAsStream("producer.properties")
         val properties = Properties()
         properties.load(inputStream)
+        val kafkaServer = System.getenv("KAFKA_CONNECT")
+        if (kafkaServer != null) {
+            properties["bootstrap.servers"] = kafkaServer
+        }
         return properties
     }
 }
