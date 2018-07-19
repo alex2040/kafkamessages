@@ -2,7 +2,7 @@ import kafka.Consumer
 import kafka.Producer
 import okhttp3.OkHttpClient
 import okhttp3.Request
-
+import java.io.IOException
 
 private val producer = Producer()
 
@@ -29,8 +29,13 @@ private fun sendTelegramMessage(message: String) {
         if (response.code() != 200) {
             putMessageToKafka(message)
         }
-    } catch (e: Exception) {
+        if (response.body() != null) {
+            response.close()
+        }
+    } catch (e: IOException) {
         putMessageToKafka(message)
+    } catch (e: RuntimeException) {
+        e.printStackTrace()
     }
 }
 
