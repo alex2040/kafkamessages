@@ -20,7 +20,7 @@ fun main(args: Array<String>) {
 private fun sendTelegramMessage(message: String) {
     val client = OkHttpClient()
 
-    val url = "https://api.telegram.org/bot${Configuration.getBotToken()}/sendMessage?chat_id=${Configuration.getChatId()}&text=$message"
+    val url = "http://api.telegram.org/bot${Configuration.getBotToken()}/sendMessage?chat_id=${Configuration.getChatId()}&text=$message"
     println("url: $url")
     val request = Request.Builder()
             .url(url)
@@ -29,7 +29,7 @@ private fun sendTelegramMessage(message: String) {
     try {
         val response = client.newCall(request).execute()
         if (response.code() != 200) {
-            println("status code: ${response.code()}, gonna put message to kafka again")
+            println("status code: ${response.code()}, gonna put the message to kafka again")
             putMessageToKafka(message)
         }
         if (response.body() != null) {
@@ -37,6 +37,7 @@ private fun sendTelegramMessage(message: String) {
         }
     } catch (e: IOException) {
         e.printStackTrace()
+        println("exception occurs, gonna put the message to kafka again")
         putMessageToKafka(message)
     } catch (e: RuntimeException) {
         e.printStackTrace()

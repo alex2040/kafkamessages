@@ -7,17 +7,16 @@ services:
   kafka:
     image: wurstmeister/kafka:1.0.0
     ports:
-      - target: 9094
-        published: 9094
+      - target: 9092
+        published: 9092
         protocol: tcp
         mode: host
     environment:
       KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
-      KAFKA_ADVERTISED_HOST_NAME: 172.18.0.3
+      KAFKA_ADVERTISED_HOST_NAME: kafka
       KAFKA_BROKER_ID: 999
       KAFKA_ADVERTISED_PORT: 9092
       KAFKA_PROTOCOL_NAME: INSIDE
-#      KAFKA_PORT: 9092
       KAFKA_AUTO_CREATE_TOPICS_ENABLE: 'true'
       KAFKA_CREATE_TOPICS: "test:1:1"
       KAFKA_ZOOKEEPER_CONNECT: 'zookeeper:2181'
@@ -26,8 +25,8 @@ services:
   telegram:
     build: telegrambot
     environment:
-      KAFKA_CONNECT: 172.18.0.3:9092
+      KAFKA_CONNECT: kafka:9092
   application:
     build: application
     environment:
-      KAFKA_CONNECT: 172.18.0.3:9092
+      KAFKA_CONNECT: kafka:9092
