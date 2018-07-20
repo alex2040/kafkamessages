@@ -20,19 +20,23 @@ fun main(args: Array<String>) {
 private fun sendTelegramMessage(message: String) {
     val client = OkHttpClient()
 
+    val url = "https://api.telegram.org/bot${Configuration.getBotToken()}/sendMessage?chat_id=${Configuration.getChatId()}&text=$message"
+    println("url: $url")
     val request = Request.Builder()
-            .url("https://api.telegram.org/bot${Configuration.getBotToken()}/sendMessage?chat_id=${Configuration.getChatId()}&text=$message")
+            .url(url)
             .get()
             .build()
     try {
         val response = client.newCall(request).execute()
         if (response.code() != 200) {
+            println("status code: ${response.code()}, gonna put message to kafka again")
             putMessageToKafka(message)
         }
         if (response.body() != null) {
             response.close()
         }
     } catch (e: IOException) {
+        e.printStackTrace()
         putMessageToKafka(message)
     } catch (e: RuntimeException) {
         e.printStackTrace()
